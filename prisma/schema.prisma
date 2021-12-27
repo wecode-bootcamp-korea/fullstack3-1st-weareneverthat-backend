@@ -68,11 +68,12 @@ model categories {
 }
 
 model users {
-  id             Int              @id @default(autoincrement())
-  email          String
-  password       String
-  name           String
-  create_at      DateTime         @default(now())
+  id        Int      @id @default(autoincrement())
+  email     String
+  password  String
+  name      String
+  create_at DateTime @default(now())
+
   users_products users_products[]
 }
 

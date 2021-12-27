@@ -23,6 +23,9 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
     "prettier-plugin-prisma": "^3.7.0",
     "prisma": "^3.7.0"
   }

@@ -1,32 +1,33 @@
 {
-  "name": "fullstack3-1st-weareneverthat-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend/issues"
-  },
-  "homepage": "https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend#readme",
-  "dependencies": {
-    "@prisma/client": "^3.7.0",
-    "express": "^4.17.2"
-  },
-  "devDependencies": {
-    "dotenv": "^10.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.1",
-    "prettier-plugin-prisma": "^3.7.0",
-    "prisma": "^3.7.0"
-  }
+	"name": "fullstack3-1st-weareneverthat-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"lint": "eslint ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend/issues"
+	},
+	"homepage": "https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend#readme",
+	"dependencies": {
+		"@prisma/client": "^3.7.0",
+		"express": "^4.17.2"
+	},
+	"devDependencies": {
+		"dotenv": "^10.0.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"prettier": "^2.5.1",
+		"prettier-plugin-prisma": "^3.7.0",
+		"prisma": "^3.7.0"
+	}
 }

@@ -6,87 +6,108 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model products {
-  id          Int     @id @default(autoincrement())
-  name        String
-  count       Int
-  price       Int
-  discount    Decimal
-  description String
-  country     String
+model Product {
+  id            Int                      @id @default(autoincrement())
+  name          String
+  count         Int
+  price         Int
+  discountRate  Decimal                  @map("discount_rate")
+  description   String
+  country       String
+  Category      Category?                @relation(fields: [categoryId], references: [id])
+  categoryId    Int?                     @map("category_id")
+  ProductCode   ProductCode?             @relation(fields: [productCodeId], references: [id])
+  productCodeId Int?                     @map("product_code_id")
+  products      ProductsOnProductSizes[]
+  productImages ProductImage[]
+  products2     ProductsOnUsers[]
+  hearts        Heart[]
 
-  product_image          product_images[]
-  products_product_sizes products_product_sizes[]
-  users_products         users_products[]
-
-  categories      categories?    @relation(fields: [categoriesId], references: [id])
-  categoriesId    Int?
-  product_codes   product_codes? @relation(fields: [product_codesId], references: [id])
-  product_codesId Int?
+  @@map("products")
 }
 
-model product_codes {
-  id           Int @id @default(autoincrement())
-  product_code Int
+model ProductCode {
+  id          Int       @id @default(autoincrement())
+  productCode Int       @map("product_code")
+  products    Product[]
 
-  products products[]
+  @@map("product_codes")
 }
 
-model product_images {
-  id        Int    @id @default(autoincrement())
-  image_url String
-
-  products   products? @relation(fields: [productsId], references: [id])
-  productsId Int?
-}
-
-model product_sizes {
-  id   Int    @id @default(autoincrement())
-  size String
-
-  products_product_sizes products_product_sizes[]
-}
-
-model products_product_sizes {
-  id Int @id @default(autoincrement())
-
-  products        products?      @relation(fields: [productsId], references: [id])
-  productsId      Int?
-  product_sizes   product_sizes? @relation(fields: [product_sizesId], references: [id])
-  product_sizesId Int?
-}
-
-model categories {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  products products[]
-}
-
-model users {
+model ProductImage {
   id        Int      @id @default(autoincrement())
-  email     String
-  password  String
-  name      String
-  create_at DateTime @default(now())
+  imageUrl  String   @map("image_url")
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?     @map("product_id")
 
-  users_products users_products[]
+  @@map("product_images")
 }
 
-model users_products {
-  id Int @id @default(autoincrement())
+model ProductSize {
+  id           Int                      @id @default(autoincrement())
+  size         String
+  productSizes ProductsOnProductSizes[]
 
-  users      users?    @relation(fields: [usersId], references: [id])
-  usersId    Int?
-  products   products? @relation(fields: [productsId], references: [id])
-  productsId Int?
+  @@map("product_sizes")
 }
 
-model main_page_image {
-  id        Int    @id @default(autoincrement())
-  image_url String
+model ProductsOnProductSizes {
+  id            Int          @id @default(autoincrement())
+  ProductSize   ProductSize? @relation(fields: [productSizeId], references: [id])
+  productSizeId Int?         @map("product_size_id")
+  Product       Product?     @relation(fields: [productId], references: [id])
+  productId     Int?         @map("product_id")
+
+  @@map("products_product_sizes")
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
+
+  @@map("categories")
+}
+
+model User {
+  id       Int               @id @default(autoincrement())
+  email    String
+  password String
+  name     String
+  createAt DateTime          @default(now()) @map("create_at")
+  users    ProductsOnUsers[]
+  hearts   Heart[]
+
+  @@map("users")
+}
+
+model ProductsOnUsers {
+  id        Int      @id @default(autoincrement())
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?     @map("user_id")
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?     @map("product_id")
+
+  @@map("products_users")
+}
+
+model MainPageImage {
+  id       Int    @id @default(autoincrement())
+  imageUrl String @map("image_url")
+
+  @@map("main_page_images")
+}
+
+model Heart {
+  id        Int      @id @default(autoincrement())
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?     @map("product_id")
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    Int?     @map("user_id")
+
+  @@map("hearts")
 }

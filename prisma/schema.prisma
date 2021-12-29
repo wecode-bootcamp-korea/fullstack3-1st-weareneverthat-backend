@@ -21,14 +21,14 @@ model Category {
 
 model Product {
   id            Int      @id @default(autoincrement())
-  name          String
+  name          Int
   price         Int
   discountPrice Int      @map("discount_price")
   description   String
   country       String
   createdAt     DateTime @default(now()) @map("created_at")
   Category      Category @relation(fields: [categoryId], references: [id])
-  categoryId    Int      @map("category_id")
+  categoryId    Int      @map("cateory_id")
 
   heart  Heart[]
   detail ProductDetail[]

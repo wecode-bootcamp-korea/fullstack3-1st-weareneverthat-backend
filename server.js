@@ -1,17 +1,24 @@
 const http = require('http');
 const express = require('express');
-const routes = require('./routes/index');
+const { prismaClient } = require('@prisma/client');
+const routes = require('./routes');
+const cors = require('cors');
+const prisma = new prismaClient();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'pong' });
-});
-
 const server = http.createServer(app);
 
-server.listen(8000, () => {
-  console.log('server is listening on PORT 8000');
-});
+const start = async () => {
+	try {
+		server.listen(8000, () => console.log('server is listening on PORT 8000'));
+	} catch (err) {
+		console.log(err);
+		await prisma.$disconnect();
+	}
+};
+
+start();

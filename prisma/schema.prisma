@@ -43,11 +43,9 @@ model ProductDetail {
   productId      Int          @map("product_id")
   ProductColor   ProductColor @relation(fields: [productColorId], references: [id])
   productColorId Int          @map("product_color_id")
-  ProductSize    ProductSize  @relation(fields: [productSizeId], references: [id])
-  productSizeId  Int          @map("product_size_id")
 
   image ProductImage[]
-  cart  Cart[]
+  size  DetailOnSize[]
 
   @@map("product_details")
 }
@@ -75,9 +73,21 @@ model ProductSize {
   id   Int    @id @default(autoincrement())
   size String
 
-  productDetail ProductDetail[]
+  detail DetailOnSize[]
 
   @@map("product_sizes")
+}
+
+model DetailOnSize {
+  id              Int           @id @default(autoincrement())
+  ProductDetail   ProductDetail @relation(fields: [productDetailId], references: [id])
+  productDetailId Int           @map("product_detail_id")
+  ProductSize     ProductSize   @relation(fields: [productSizeId], references: [id])
+  productSizeId   Int           @map("product_size_id")
+
+  cart Cart[]
+
+  @@map("details_sizes")
 }
 
 model User {
@@ -95,11 +105,11 @@ model User {
 }
 
 model Cart {
-  id              Int           @id @default(autoincrement())
-  ProductDetail   ProductDetail @relation(fields: [productDetailId], references: [id])
-  productDetailId Int           @map("product_detail_id")
-  User            User          @relation(fields: [userId], references: [id])
-  userId          Int           @map("user_id")
+  id             Int          @id @default(autoincrement())
+  DetailOnSize   DetailOnSize @relation(fields: [detailOnSizeId], references: [id])
+  detailOnSizeId Int          @map("detail_size_id")
+  User           User         @relation(fields: [userId], references: [id])
+  userId         Int          @map("user_id")
 
   @@map("carts")
 }

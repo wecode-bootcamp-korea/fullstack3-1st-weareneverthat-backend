@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const secret = 'minsu'
+const secret = 'minsu';
 
-function verifytoken(token){
-  try{
-    return jwt.verify(token, secret)
-  }catch{
-    return null
-  }
+function verifytoken(token) {
+	try {
+		return jwt.verify(token, secret);
+	} catch (err) {
+		return null;
+	}
 }
 
-module.exports {verifytoken}
+module.exports = { verifytoken };

@@ -14,6 +14,7 @@ VALUES
   ('T-Logo Hoodie', 82000, 57400, 'Logo embroidery on front', 'Bangladesh', 2),
   ('Converse x thisisneverthat Tee', 55000, 55000, '240GSM oversized cotton jersey with modern, oversized fit', 'China', 3);
 
+<<<<<<< HEAD
 -- insert product details data
 INSERT INTO
   product_details(quantity, product_id, product_color_id, product_size_id)
@@ -36,6 +37,22 @@ VALUES
   ('10', 3, 3, 1),
   ('20', 3, 3, 2),
   ('30', 3, 3, 3);
+=======
+-- insert products data
+INSERT INTO 
+  products(name, price, discount_price, description, country, category_id)
+VALUES 
+  ('PERTEX T Down Jacked', 189000, 132300, 'PERTEX QUANTUM fabric', Vietnam, 1),
+  ('PERTEX T Down Jacked', 189000, 132300, 'PERTEX QUANTUM fabric', Vietnam, 1),
+  ('T-Logo Hoodie', 82000, 57400, 'Logo embroidery on front', Bangladesh, 2),
+  ('T-Logo Hoodie', 82000, 57400, 'Logo embroidery on front', Bangladesh, 2),
+  ('Converse x thisisneverthat Tee', 55000, , '240GSM oversized cotton jersey with modern, oversized fit', China, 3),
+  ('Converse x thisisneverthat Tee', 55000, , '240GSM oversized cotton jersey with modern, oversized fit', China, 3),
+  ('Paint Splatter Denim Shrit', 119000, , 'Hand-painted', China, 4),
+  ('Paint Splatter Denim Shrit', 119000, , 'Hand-painted', China, 4),
+  ('Argyle Cardigan', 124000, 86800, 'Logo embroidery on chest', Korea, 5),
+  ('Argyle Cardigan', 124000, 86800, 'Logo embroidery on chest', Korea, 5),
+>>>>>>> develop
 
 -- insert product images data
 -- INSERT INTO

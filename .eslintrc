@@ -1,6 +1,6 @@
 {
 	"extends": ["eslint:recommended", "plugin:prettier/recommended"],
-  "parserOptions": {
+	"parserOptions": {
 		"ecmaVersion": 2017
 	},
 

@@ -11,15 +11,27 @@ datasource db {
 }
 
 model Product {
-  id             Int                      @id @default(autoincrement())
-  color          String
-  ProductGroup   ProductGroup             @relation(fields: [productGroupId], references: [id])
+  id Int @id @default(autoincrement())
+
+  ProductGroup   ProductGroup @relation(fields: [productGroupId], references: [id])
   productGroupId Int
-  img            ProductImage[]
-  cart           Cart[]
-  product        ProductsOnProductSizes[]
+  Color          Color        @relation(fields: [colorId], references: [id])
+  colorId        Int
+
+  img  ProductImage[]
+  cart Cart[]
+  size ProductsOnProductSizes[]
 
   @@map("products")
+}
+
+model Color {
+  id    Int    @id @default(autoincrement())
+  color String
+
+  product Product[]
+
+  @@map("colors")
 }
 
 model ProductGroup {
@@ -49,9 +61,9 @@ model ProductImage {
 }
 
 model ProductSize {
-  id    Int                      @id @default(autoincrement())
-  size  String
-  sizes ProductsOnProductSizes[]
+  id      Int                      @id @default(autoincrement())
+  size    String
+  product ProductsOnProductSizes[]
 
   @@map("product_sizes")
 }
@@ -77,7 +89,7 @@ model Category {
 
 model User {
   id        Int      @id @default(autoincrement())
-  email     String
+  email     String   @unique
   password  String
   name      String
   createdAt DateTime @default(now()) @map("created_at")

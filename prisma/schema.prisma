@@ -21,7 +21,7 @@ model Category {
 
 model Product {
   id            Int      @id @default(autoincrement())
-  name          Int
+  name          String
   price         Int
   discountPrice Int      @map("discount_price")
   description   String

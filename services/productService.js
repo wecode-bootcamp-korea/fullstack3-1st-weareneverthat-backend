@@ -1,9 +1,11 @@
 const productDao = require('../models/productDao');
 
 const getDetail = async id => {
-	const detail = await productDao.getDetailById(id);
+	const info = await productDao.getDetailById(id);
 
-	return detail;
+	console.log(info);
+
+	return info;
 };
 
 module.exports = { getDetail };

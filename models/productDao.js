@@ -4,7 +4,7 @@ const getDetailById = async id => {
 	const productInfo = await prisma.$queryRaw`
     SELECT
       id,
-      product_name,
+      name,
       price,
       discount_price,
       description,
@@ -16,25 +16,29 @@ const getDetailById = async id => {
 	const detailInfo = await prisma.$queryRaw`
     SELECT
       product_details.id,
-      count,
-      colors.color,
-      size
+      quantity,
+      product_colors.color,
+      product_sizes.size
     FROM product_details
-    JOIN products ON product_details.products_id = products.id
-    WHERE products.id = ${id}
+    JOIN product_colors ON product_colors.id = product_details.product_color_id
+    JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
+    JOIN product_sizes ON product_sizes.id = details_sizes.product_size_id
+    WHERE product_details.product_id = ${id}
   `;
 
 	const detailImage = await prisma.$queryRaw`
     SELECT
-      image_url,
-      is_list
-    FROM product_images
-    JOIN product_details ON product_images.product_id = product_details.id
-    JOIN products ON product_detail.products_id = products.id
-    WHERE products.id = ${id}
+      product_details.id,
+      product_images.image_url,
+      product_images.is_list
+    FROM product_details
+    JOIN product_images ON product_images.product_detail_id = product_details.id
+    WHERE product_details.product_id = ${id}
   `;
 
-	return { productInfo, detailInfo, detailImage };
+	const info = { productInfo, detailInfo, detailImage };
+
+	return info;
 };
 
 module.exports = { getDetailById };

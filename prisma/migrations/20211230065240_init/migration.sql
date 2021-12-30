@@ -23,7 +23,6 @@ CREATE TABLE `products` (
 -- CreateTable
 CREATE TABLE `product_details` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `quantity` INTEGER NOT NULL,
     `product_id` INTEGER NOT NULL,
     `product_color_id` INTEGER NOT NULL,
 
@@ -59,6 +58,7 @@ CREATE TABLE `product_sizes` (
 -- CreateTable
 CREATE TABLE `details_sizes` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `quantity` INTEGER NOT NULL,
     `product_detail_id` INTEGER NOT NULL,
     `product_size_id` INTEGER NOT NULL,
 

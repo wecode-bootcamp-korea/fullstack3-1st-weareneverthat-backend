@@ -6,10 +6,6 @@ const app = express();
 app.use(express.json());
 app.use(routes);
 
-app.get('/ping', (req, res) => {
-	res.status(200).json({ message: 'pong' });
-});
-
 const server = http.createServer(app);
 
 server.listen(8000, () => {

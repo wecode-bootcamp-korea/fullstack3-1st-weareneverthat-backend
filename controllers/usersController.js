@@ -28,7 +28,7 @@ const signIn = async (req, res) => {
 			}
 		}
 		const newUserToken = await usersService.signIn(email, password);
-		return res.status(201).json({ message: '로그인 성공😃', token: newUserToken });
+		return res.status(200).json({ message: '로그인 성공😃', token: newUserToken });
 	} catch (err) {
 		console.log(err);
 		return res.status(err.statusCode || 500).json({ message: err.message });

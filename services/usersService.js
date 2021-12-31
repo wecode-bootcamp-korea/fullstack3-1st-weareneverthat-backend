@@ -1,7 +1,7 @@
 const usersDao = require('../models/usersDao');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const secret = require('../env');
+const { SECRET } = process.env;
 
 const signUp = async (email, password, name) => {
 	const [user] = await usersDao.getUserByEmail(email);
@@ -31,7 +31,7 @@ const signIn = async (email, password) => {
 		error.statusCode = 409;
 		throw error;
 	}
-	const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+	const token = jwt.sign({ id: user.id }, SECRET, { expiresIn: '1h' });
 	return token;
 };
 

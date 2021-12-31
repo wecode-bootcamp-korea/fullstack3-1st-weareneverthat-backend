@@ -26,12 +26,14 @@ const getAllQuantityBySize = async (req, res) => {
 	return res.status(200).json({ allQuantityBySize });
 };
 
-// const getSizeQuantity = async (req, res) => {
-// 	const id = req.params.id;
-// 	const product_detail_id = req.query.id;
-// 	const quantity = await productService.getSizeQuantity(id, product_detail_id);
-
-// 	return res.status(200).json({ quantity });
-// };
-
 module.exports = { getDetail, getAllImages, getAllQuantityBySize };
+const productList = async (req, res) => {
+	const { category } = req.params;
+	const sort = req.query.sort ? req.query.sort : 'id-asc';
+
+	const productList = await productService.productList(category, sort);
+
+	return res.status(200).json({ productList });
+};
+
+module.exports = { productList };

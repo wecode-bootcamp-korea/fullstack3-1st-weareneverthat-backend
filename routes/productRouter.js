@@ -6,4 +6,6 @@ router.get('/:id', productController.getDetail);
 router.get('/image/:id', productController.getAllImages);
 router.get('/quantity/:id', productController.getAllQuantityBySize);
 
+router.get('/:category', productController.productList);
+
 module.exports = router;

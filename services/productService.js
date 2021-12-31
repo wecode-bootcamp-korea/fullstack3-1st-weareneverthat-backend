@@ -16,12 +16,6 @@ const productList = async (category, sort) => {
 		}
 	}
 
-	for (const index in sortedProducts) {
-		sortedProducts[index].images = await productDao.getProductImageByProductId(
-			sortedProducts[index].id,
-		);
-	}
-
 	return sortedProducts;
 };
 

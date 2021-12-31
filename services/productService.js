@@ -10,13 +10,13 @@ const productList = async (category, sort) => {
 
 	const [{ id: categoryId }] = await productDao.getCategoryIdByCategory(category);
 
-	for (index in products) {
+	for (const index in products) {
 		if (products[index].category_id === categoryId) {
 			sortedProducts.push(products[index]);
 		}
 	}
 
-	for (index in sortedProducts) {
+	for (const index in sortedProducts) {
 		sortedProducts[index].images = await productDao.getProductImageByProductId(
 			sortedProducts[index].id,
 		);

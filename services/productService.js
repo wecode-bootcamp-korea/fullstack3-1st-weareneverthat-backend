@@ -26,7 +26,6 @@ const getAllQuantityBySize = async (id, color) => {
 	return allQuantityBySize;
 };
 
-module.exports = { getDetail, getAllImages, getAllQuantityBySize };
 // 제품 목록 조회(전체 조회, 카테고리별 조회, 가격순 정렬)
 const productList = async (category, sort) => {
 	const splitSort = sort.split('-');
@@ -46,4 +45,4 @@ const productList = async (category, sort) => {
 	return sortedProducts;
 };
 
-module.exports = { productList };
+module.exports = { getDetail, getAllImages, getAllQuantityBySize, productList };

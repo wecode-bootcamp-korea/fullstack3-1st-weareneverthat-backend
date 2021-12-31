@@ -26,7 +26,6 @@ const getAllQuantityBySize = async (req, res) => {
 	return res.status(200).json({ allQuantityBySize });
 };
 
-module.exports = { getDetail, getAllImages, getAllQuantityBySize };
 const productList = async (req, res) => {
 	const { category } = req.params;
 	const sort = req.query.sort ? req.query.sort : 'id-asc';
@@ -36,4 +35,4 @@ const productList = async (req, res) => {
 	return res.status(200).json({ productList });
 };
 
-module.exports = { productList };
+module.exports = { getDetail, getAllImages, getAllQuantityBySize, productList };

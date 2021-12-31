@@ -1,4 +1,5 @@
 const prisma = require('./index');
+const { raw } = require('@prisma/client');
 
 const getDetailById = async (id, color, size) => {
 	const [productInfo] = await prisma.$queryRaw`
@@ -73,9 +74,6 @@ const getAllQuantityBySize = async (id, color) => {
 
 	return allQuantityBySize;
 };
-
-module.exports = { getDetailById, getAllImages, getAllQuantityBySize };
-const { raw } = require('@prisma/client');
 
 // 제품 id로 색상 조회
 const getProductColorByProductId = async productId => {
@@ -170,6 +168,9 @@ const getCategoryIdByCategory = async category => {
 };
 
 module.exports = {
+	getDetailById,
+	getAllImages,
+	getAllQuantityBySize,
 	getProductColorByProductId,
 	getProductImageByProductId,
 	getAllProductInfo,

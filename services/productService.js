@@ -1,11 +1,35 @@
 const productDao = require('../models/productDao');
 
-const getDetail = async id => {
-	const info = await productDao.getDetailById(id);
+const getDetail = async (id, color, size) => {
+	const detail = await productDao.getDetailById(id, color, size);
 
-	console.log(info);
+	const { productInfo, imageByColor, quantity } = detail;
 
-	return info;
+	const imageUrl = imageByColor.map(el => el.image_url);
+
+	productInfo['image_url'] = imageUrl;
+
+	productInfo['quantity'] = quantity['quantity'];
+
+	return productInfo;
 };
 
-module.exports = { getDetail };
+const getAllImages = async id => {
+	const AllImages = await productDao.getAllImages(id);
+
+	return AllImages;
+};
+
+const getAllQuantityBySize = async (id, color) => {
+	const allQuantityBySize = await productDao.getAllQuantityBySize(id, color);
+
+	return allQuantityBySize;
+};
+
+// const getSizeQuantity = async (id, product_detail_id) => {
+// 	const quantity = await productDao.getSizeQuantity(product_detail_id);
+
+// 	return quantity;
+// };
+
+module.exports = { getDetail, getAllImages, getAllQuantityBySize };

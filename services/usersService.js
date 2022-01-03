@@ -1,5 +1,5 @@
 const usersDao = require('../models/usersDao');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { SECRET } = process.env;
 

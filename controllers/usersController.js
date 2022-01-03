@@ -11,7 +11,7 @@ const signUp = async (req, res) => {
 			}
 		}
 		await usersService.signUp(email, password, name);
-		return res.status(201).json({});
+		return res.status(201).json({ message: '가입 성공☺️' });
 	} catch (err) {
 		console.log(err);
 		return res.status(err.statusCode || 500).json({ message: err.message });

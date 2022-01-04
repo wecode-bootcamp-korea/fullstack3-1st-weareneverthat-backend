@@ -33,7 +33,7 @@ CREATE TABLE `product_details` (
 CREATE TABLE `product_images` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `image_url` VARCHAR(191) NOT NULL,
-    `is_list` BOOLEAN NOT NULL DEFAULT false,
+    `is_main` BOOLEAN NOT NULL DEFAULT false,
     `product_detail_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)

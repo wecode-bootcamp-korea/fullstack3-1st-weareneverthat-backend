@@ -15,6 +15,7 @@ CREATE TABLE `products` (
     `description` VARCHAR(191) NOT NULL,
     `country` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `sales_count` INTEGER NOT NULL,
     `category_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
@@ -33,7 +34,7 @@ CREATE TABLE `product_details` (
 CREATE TABLE `product_images` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `image_url` VARCHAR(191) NOT NULL,
-    `is_list` BOOLEAN NOT NULL DEFAULT false,
+    `is_main` BOOLEAN NOT NULL DEFAULT false,
     `product_detail_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)

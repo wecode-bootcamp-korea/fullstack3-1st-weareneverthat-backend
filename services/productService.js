@@ -12,10 +12,13 @@ const productRanking = async () => {
 	return product;
 };
 
-const clickHeart = async (id, productId) => {
-	const isClicked = await productDao.findHeart(id, productId);
+const clickHeart = async (userId, productId) => {
+	const [{ isHeart }] = await productDao.getIsHeart(userId, productId);
 
-	return isClicked;
+	if (isHeart) await productDao.deleteHeart(userId, productId);
+	else await productDao.putHeart(userId, productId);
+
+	return isHeart;
 };
 
 module.exports = { productList, productRanking, clickHeart };

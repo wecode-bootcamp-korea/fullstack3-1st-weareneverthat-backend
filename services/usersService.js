@@ -25,12 +25,13 @@ const signIn = async (email, password) => {
 		error.statusCode = 409;
 		throw error;
 	}
-	const validPassword = await bcrypt.compare(password, user.password);
+	const validPassword = bcrypt.compareSync(password, user.password);
 	if (!validPassword) {
 		const error = new Error('유효하지 않은 정보입니다.');
 		error.statusCode = 409;
 		throw error;
 	}
+
 	const token = jwt.sign({ id: user.id }, SECRET, { expiresIn: '1h' });
 	return token;
 };

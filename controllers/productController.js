@@ -22,14 +22,14 @@ const productRanking = async (req, res) => {
 };
 
 const clickHeart = async (req, res) => {
-	// const { productId } = req.body;
-	// const authorizaiton = req.header.authorizaiton;
-	// const { SECRET_KEY } = process.env;
-	// const { id } = jwt.verify(authorizaiton, SECRET);
+	const userId = req.userId;
+	const productId = req.query.productId;
 
-	const heart = await productService.clickHeart(2, 2);
+	console.log(userId);
 
-	return res.status(200).json({ message: '완료', heart });
+	const heart = await productService.clickHeart(userId, productId);
+
+	return res.status(200).json({ message: '1' });
 };
 
 module.exports = { productList, productRanking, clickHeart };

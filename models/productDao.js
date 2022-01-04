@@ -15,6 +15,12 @@ const getProductInfo = async (category, sortingVariable, sortingCondition) => {
 			name: true,
 			price: true,
 			discountPrice: true,
+			heart: {
+				select: {
+					userId: true,
+				},
+			},
+
 			detail: {
 				select: {
 					id: true,
@@ -39,6 +45,7 @@ const getProductRanking = async () => {
 			salesCount: 'desc',
 		},
 		select: {
+			id: true,
 			name: true,
 			Category: {
 				select: {
@@ -65,17 +72,52 @@ const getProductRanking = async () => {
 	return product;
 };
 
-const findHeart = async (id, productId) => {
+const getIsHeart = async (userId, productId) => {
 	const isClicked = await prisma.$queryRaw`
-		select id
-		
+		SELECT EXISTS
+		(
+			SELECT
+				hearts.user_id
+			FROM
+				hearts
+			WHERE
+				hearts.user_id=${userId}
+			AND
+				hearts.product_id=${productId}
+		)
+		AS
+			isHeart;
 	`;
 
 	return isClicked;
 };
 
+const putHeart = async (userId, productId) => {
+	return await prisma.$queryRaw`
+	INSERT INTO
+		hearts(user_id, product_id)
+	VALUES
+		(${userId}, ${productId})
+`;
+};
+
+const deleteHeart = async (userId, productId) => {
+	await prisma.$queryRaw`
+		DELETE FROM
+			hearts
+		WHERE
+			user_id=${userId}
+		AND
+			product_id=${productId}
+	`;
+
+	return 1;
+};
+
 module.exports = {
 	getProductInfo,
 	getProductRanking,
-	findHeart,
+	getIsHeart,
+	putHeart,
+	deleteHeart,
 };

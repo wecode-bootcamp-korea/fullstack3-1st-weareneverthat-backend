@@ -20,8 +20,10 @@
 	"homepage": "https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend#readme",
 	"dependencies": {
 		"@prisma/client": "^3.7.0",
+		"bcrypt": "^5.0.1",
 		"cors": "^2.8.5",
-		"express": "^4.17.2"
+		"express": "^4.17.2",
+		"jsonwebtoken": "^8.5.1"
 	},
 	"devDependencies": {
 		"dotenv": "^10.0.0",

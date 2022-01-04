@@ -2,6 +2,8 @@ const productDao = require('../models/productDao');
 
 const productList = async (category, sortingVariable, sortingCondition) => {
 	const product = await productDao.getProductInfo(category, sortingVariable, sortingCondition);
+
+	return product;
 };
 
 const getDetail = async (productId, color, size) => {
@@ -26,15 +28,6 @@ const getAllQuantityBySize = async (productId, color) => {
 	return await productDao.getAllQuantityBySize(productId, color);
 };
 
-// 제품 목록 조회(전체 조회, 카테고리별 조회, 가격순 정렬)
-const productListPage = async (category, sort) => {
-	const splitSort = sort.split('-');
-	const products = await productDao.getAllProductInfo(splitSort[0], splitSort[1]);
-	const sortedProducts = [];
-
-	return product;
-};
-
 const productRanking = async () => {
 	const product = await productDao.getProductRanking();
 
@@ -51,7 +44,6 @@ const clickHeart = async (userId, productId) => {
 };
 
 module.exports = {
-	productListPage,
 	productRanking,
 	clickHeart,
 	getDetail,

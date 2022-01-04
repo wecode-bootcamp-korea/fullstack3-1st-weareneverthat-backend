@@ -65,7 +65,6 @@ const isHeart = async (req, res) => {
 
 		return res.status(200).json({ heart });
 	} catch (err) {
-		// console.log(err);
 		return res.status(400).json({ message: 'VALIDATE_ERROR' });
 	}
 };

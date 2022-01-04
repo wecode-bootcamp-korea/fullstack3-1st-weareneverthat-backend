@@ -6,6 +6,7 @@ const validateToken = require('../middlewares/validateToken');
 router.get('/', productController.productList);
 router.get('/top20', productController.productRanking);
 router.get('/heart', validateToken, productController.clickHeart);
+router.get('/isHeart', validateToken, productController.isHeart);
 router.get('/:productId', productController.getDetail);
 router.get('/:productId/images', productController.getAllImages);
 router.get('/:productId/quantity', productController.getAllQuantityBySize);

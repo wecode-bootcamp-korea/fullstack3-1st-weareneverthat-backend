@@ -7,7 +7,7 @@ const signUp = async (req, res) => {
 
 		for (let key in REQUIRED_KEYS) {
 			if (!REQUIRED_KEYS[key]) {
-				return res.status(400).json({ message: '정보를 제대로 입력하세요!' });
+				return res.status(400).json({ message: 'EMAIL_ALREAY_EXIST' });
 			}
 		}
 		await usersService.signUp(email, password, name);

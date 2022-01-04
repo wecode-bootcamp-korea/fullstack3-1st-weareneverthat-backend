@@ -7,7 +7,6 @@ const getDetail = async (req, res) => {
 
 	const info = await productService.getDetail(productId, color, size);
 
-	console.log('success');
 	return res.status(200).json(info);
 };
 
@@ -50,10 +49,25 @@ const productRanking = async (req, res) => {
 const clickHeart = async (req, res) => {
 	const userId = req.userId;
 	const productId = req.query.productId;
+	console.log(userId, productId);
 
 	const heart = await productService.clickHeart(userId, productId);
 
 	return res.status(200).json({ heart });
+};
+
+const isHeart = async (req, res) => {
+	try {
+		const userId = req.userId;
+		const productId = req.query.productId;
+
+		const heart = await productService.isHeart(userId, productId);
+
+		return res.status(200).json({ heart });
+	} catch (err) {
+		// console.log(err);
+		return res.status(400).json({ message: 'VALIDATE_ERROR' });
+	}
 };
 
 module.exports = {
@@ -63,4 +77,5 @@ module.exports = {
 	getDetail,
 	getAllImages,
 	getAllQuantityBySize,
+	isHeart,
 };

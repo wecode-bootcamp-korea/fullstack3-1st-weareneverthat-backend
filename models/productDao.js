@@ -32,7 +32,7 @@ const getDetailById = async (productId, color, size) => {
     AND product_colors.color = ${color}
   `;
 
-	// 선택한 컬러에 대한
+	// 선택한 컬러에 대한 수량이 0이 아닌 사이즈의 수량 // 사이즈 선택시 해당 사이즈의 수량
 	if (size) {
 		const [quantity] = await prisma.$queryRaw`
     SELECT
@@ -46,8 +46,6 @@ const getDetailById = async (productId, color, size) => {
     AND product_colors.color = ${color}
     AND product_sizes.size = ${size}
   `;
-		console.log(size);
-		console.log(quantity);
 
 		return { productInfo, imageByColor, quantity };
 	} else {
@@ -63,8 +61,6 @@ const getDetailById = async (productId, color, size) => {
     AND product_colors.color = ${color}
     AND details_sizes.quantity != 0
   `;
-		console.log(size);
-		console.log(quantity);
 
 		return { productInfo, imageByColor, quantity };
 	}

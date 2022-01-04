@@ -27,6 +27,7 @@ model Product {
   description   String
   country       String
   createdAt     DateTime @default(now()) @map("created_at")
+  salesCount    Int      @map("sales_count")
   Category      Category @relation(fields: [categoryId], references: [id])
   categoryId    Int      @map("category_id")
 

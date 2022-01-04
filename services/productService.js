@@ -1,5 +1,11 @@
 const productDao = require('../models/productDao');
 
+const productList = async (category, sortingVariable, sortingCondition) => {
+	const product = await productDao.getProductInfo(category, sortingVariable, sortingCondition);
+
+	return product;
+};
+
 const getDetail = async (productId, color, size) => {
 	const detail = await productDao.getDetailById(productId, color, size);
 
@@ -22,23 +28,26 @@ const getAllQuantityBySize = async (productId, color) => {
 	return await productDao.getAllQuantityBySize(productId, color);
 };
 
-// 제품 목록 조회(전체 조회, 카테고리별 조회, 가격순 정렬)
-const productList = async (category, sort) => {
-	const splitSort = sort.split('-');
-	const products = await productDao.getAllProductInfo(splitSort[0], splitSort[1]);
-	const sortedProducts = [];
+const productRanking = async () => {
+	const product = await productDao.getProductRanking();
 
-	if (category === 'all') return products;
-
-	const [{ id: categoryId }] = await productDao.getCategoryIdByCategory(category);
-
-	for (const index in products) {
-		if (products[index].category_id === categoryId) {
-			sortedProducts.push(products[index]);
-		}
-	}
-
-	return sortedProducts;
+	return product;
 };
 
-module.exports = { getDetail, getAllImages, getAllQuantityBySize, productList };
+const clickHeart = async (userId, productId) => {
+	const [{ isHeart }] = await productDao.getIsHeart(userId, productId);
+
+	if (isHeart) await productDao.deleteHeart(userId, productId);
+	else await productDao.putHeart(userId, productId);
+
+	return isHeart;
+};
+
+module.exports = {
+	productRanking,
+	clickHeart,
+	getDetail,
+	getAllImages,
+	getAllQuantityBySize,
+	productList,
+};

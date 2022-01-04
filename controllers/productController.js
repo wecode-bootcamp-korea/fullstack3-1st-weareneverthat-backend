@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const productService = require('../services/productService');
 
 const getDetail = async (req, res) => {
@@ -28,12 +29,38 @@ const getAllQuantityBySize = async (req, res) => {
 };
 
 const productList = async (req, res) => {
-	const { category } = req.params;
-	const sort = req.query.sort ? req.query.sort : 'id-asc';
+	const category = req.query.category === 'null' ? null : req.query.category;
+	const sort = req.query.sort === 'null' ? 'id-asc' : req.query.sort;
+	const [sortingVariable, sortingCondition] = sort.split('-');
 
-	const productList = await productService.productList(category, sort);
-
-	return res.status(200).json({ productList });
+	const product = await productService.productList(
+		category,
+		sortingVariable.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase()),
+		sortingCondition,
+	);
+	return res.status(200).json({ product });
 };
 
-module.exports = { getDetail, getAllImages, getAllQuantityBySize, productList };
+const productRanking = async (req, res) => {
+	const product = await productService.productRanking();
+
+	return res.status(200).json({ product });
+};
+
+const clickHeart = async (req, res) => {
+	const userId = req.userId;
+	const productId = req.query.productId;
+
+	const heart = await productService.clickHeart(userId, productId);
+
+	return res.status(200).json({ heart });
+};
+
+module.exports = {
+	productList,
+	productRanking,
+	clickHeart,
+	getDetail,
+	getAllImages,
+	getAllQuantityBySize,
+};

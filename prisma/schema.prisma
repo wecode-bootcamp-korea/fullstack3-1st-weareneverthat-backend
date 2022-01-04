@@ -52,7 +52,7 @@ model ProductDetail {
 model ProductImage {
   id              Int           @id @default(autoincrement())
   imageUrl        String        @map("image_url")
-  isList          Boolean       @default(false) @map("is_list")
+  isMain          Boolean       @default(false) @map("is_main")
   ProductDetail   ProductDetail @relation(fields: [productDetailId], references: [id])
   productDetailId Int           @map("product_detail_id")
 

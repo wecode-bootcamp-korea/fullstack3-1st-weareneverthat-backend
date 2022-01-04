@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 
-router.get('/:id', productController.getDetail);
-router.get('/image/:id', productController.getAllImages);
-router.get('/quantity/:id', productController.getAllQuantityBySize);
+router.get('/:productId', productController.getDetail);
+router.get('/:productId/images', productController.getAllImages);
+router.get('/:productId/quantity', productController.getAllQuantityBySize);
 
 router.get('/:category', productController.productList);
 

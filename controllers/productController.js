@@ -1,27 +1,28 @@
 const productService = require('../services/productService');
 
 const getDetail = async (req, res) => {
-	const id = req.params.id;
+	const productId = req.params.productId;
 	const { color, size } = req.query;
 
-	const info = await productService.getDetail(id, color, size);
+	const info = await productService.getDetail(productId, color, size);
 
+	console.log('success');
 	return res.status(200).json(info);
 };
 
 const getAllImages = async (req, res) => {
-	const id = req.params.id;
+	const productId = req.params.productId;
 
-	const AllImages = await productService.getAllImages(id);
+	const AllImages = await productService.getAllImages(productId);
 
 	return res.status(200).json({ AllImages });
 };
 
 const getAllQuantityBySize = async (req, res) => {
-	const id = req.params.id;
+	const productId = req.params.productId;
 	const color = req.query.color;
 
-	const allQuantityBySize = await productService.getAllQuantityBySize(id, color);
+	const allQuantityBySize = await productService.getAllQuantityBySize(productId, color);
 
 	return res.status(200).json({ allQuantityBySize });
 };

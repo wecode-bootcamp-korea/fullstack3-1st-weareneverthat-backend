@@ -12,8 +12,8 @@ const validateToken = async (req, res, next) => {
 		req.userId = userId;
 		next();
 	} catch (err) {
-		console.log(err);
 		next(err);
+		res.status(400).json({ message: 'VALIDATE_ERROR' });
 	}
 };
 

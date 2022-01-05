@@ -43,6 +43,12 @@ const clickHeart = async (userId, productId) => {
 	return isHeart;
 };
 
+const isHeart = async (userId, productId) => {
+	const [{ isHeart }] = await productDao.getIsHeart(userId, productId);
+
+	return isHeart;
+};
+
 module.exports = {
 	productRanking,
 	clickHeart,
@@ -50,4 +56,5 @@ module.exports = {
 	getAllImages,
 	getAllQuantityBySize,
 	productList,
+	isHeart,
 };

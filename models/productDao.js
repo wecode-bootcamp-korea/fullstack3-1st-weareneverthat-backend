@@ -3,7 +3,7 @@ const { transformDocument } = require('@prisma/client/runtime');
 const prisma = new PrismaClient();
 
 // 제품 디테일 정보
-const getDetailById = async (productId, color, size) => {
+const getDetailById = async (productId, colorId, size) => {
 	// 처음 선택한 컬러에 대한 디테일 정보
 	const [productInfo] = await prisma.$queryRaw`
     SELECT
@@ -19,7 +19,7 @@ const getDetailById = async (productId, color, size) => {
     JOIN product_details ON product_details.product_id = products.id
     JOIN product_colors ON product_colors.id = product_details.product_color_id 
     WHERE products.id = ${productId}
-    AND product_colors.color = ${color}
+    AND product_colors.color = ${colorId}
   `;
 
 	// 선택한 컬러에 대한 전체 이미지
@@ -30,7 +30,7 @@ const getDetailById = async (productId, color, size) => {
     JOIN product_images ON product_images.product_detail_id = product_details.id
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     WHERE product_details.product_id = ${productId}
-    AND product_colors.color = ${color}
+    AND product_colors.color = ${colorId}
   `;
 
 	// 선택한 컬러에 대한 수량이 0이 아닌 사이즈의 수량 // 사이즈 선택시 해당 사이즈의 수량
@@ -44,7 +44,7 @@ const getDetailById = async (productId, color, size) => {
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
     JOIN product_sizes ON product_sizes.id = details_sizes.product_size_id
     WHERE product_details.product_id = ${productId}
-    AND product_colors.color = ${color}
+    AND product_colors.color = ${colorId}
     AND product_sizes.size = ${size}
   `;
 
@@ -59,7 +59,7 @@ const getDetailById = async (productId, color, size) => {
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
     JOIN product_sizes ON product_sizes.id = details_sizes.product_size_id
     WHERE product_details.product_id = ${productId}
-    AND product_colors.color = ${color}
+    AND product_colors.color = ${colorId}
     AND details_sizes.quantity != 0
   `;
 

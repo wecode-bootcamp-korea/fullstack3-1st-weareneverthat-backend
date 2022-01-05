@@ -47,8 +47,6 @@ const getDetailById = async (productId, color, size) => {
     AND product_colors.color = ${color}
     AND product_sizes.size = ${size}
   `;
-		console.log(size);
-		console.log(quantity);
 
 		return { productInfo, imageByColor, quantity };
 	} else {
@@ -64,8 +62,6 @@ const getDetailById = async (productId, color, size) => {
     AND product_colors.color = ${color}
     AND details_sizes.quantity != 0
   `;
-		console.log(size);
-		console.log(quantity);
 
 		return { productInfo, imageByColor, quantity };
 	}

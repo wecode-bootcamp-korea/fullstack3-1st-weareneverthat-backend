@@ -49,6 +49,7 @@ const productRanking = async (req, res) => {
 const clickHeart = async (req, res) => {
 	const userId = req.userId;
 	const productId = req.query.productId;
+	console.log(userId, productId);
 
 	const heart = await productService.clickHeart(userId, productId);
 

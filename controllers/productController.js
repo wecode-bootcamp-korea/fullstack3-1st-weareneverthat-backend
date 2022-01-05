@@ -3,14 +3,10 @@ const productService = require('../services/productService');
 
 const getDetail = async (req, res) => {
 	const productId = req.params.productId;
-	const { colorId, size } = req.query;
+	const { color, size } = req.query;
 
-	const info = await productService.getDetail(productId, colorId, size);
+	const info = await productService.getDetail(productId, color, size);
 
-<<<<<<< HEAD
-	console.log('success1');
-=======
->>>>>>> develop
 	return res.status(200).json(info);
 };
 

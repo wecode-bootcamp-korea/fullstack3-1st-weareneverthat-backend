@@ -2,12 +2,11 @@ const productDao = require('../models/productDao');
 
 const productList = async (category, sortingVariable, sortingCondition) => {
 	const product = await productDao.getProductInfo(category, sortingVariable, sortingCondition);
-
 	return product;
 };
 
-const getDetail = async (productId, colorId, size) => {
-	const detail = await productDao.getDetailById(productId, colorId, size);
+const getDetail = async (productId, color, size) => {
+	const detail = await productDao.getDetailById(productId, color, size);
 
 	const { productInfo, imageByColor, quantity } = detail;
 

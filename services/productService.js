@@ -13,6 +13,8 @@ const getDetail = async (productId, color, size) => {
 
 	const imageUrl = imageByColor.map(el => el.image_url);
 
+	console.log(imageUrl);
+
 	productInfo['image_url'] = imageUrl;
 	productInfo['quantity'] = quantity['quantity'];
 	productInfo['size'] = quantity['size'];

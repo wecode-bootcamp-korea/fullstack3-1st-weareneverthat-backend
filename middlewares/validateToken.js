@@ -8,7 +8,7 @@ const validateToken = async (req, res, next) => {
 		const { id } = jwt.verify(token, SECRET); // 암호화된 토큰 복호화
 
 		const [{ id: userId }] = await userDao.getUserByUserId(id);
-
+		console.log(userId);
 		req.userId = userId;
 		next();
 	} catch (err) {

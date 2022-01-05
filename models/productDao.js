@@ -23,8 +23,6 @@ const getDetailById = async (productId, color, size) => {
     AND product_colors.id = ${color}
   `;
 
-	console.log('dao', color);
-
 	// 선택한 컬러에 대한 전체 이미지
 	const imageByColor = await prisma.$queryRaw`
     SELECT
@@ -35,14 +33,14 @@ const getDetailById = async (productId, color, size) => {
     WHERE product_details.product_id = ${productId}
     AND product_colors.id= ${color}
   `;
-	// console.log('Dao', imageByColor);
 
 	// 선택한 컬러에 대한
 	if (size) {
 		const [quantity] = await prisma.$queryRaw`
     SELECT
       details_sizes.quantity,
-      product_sizes.size
+      product_sizes.size,
+			details_sizes.id AS detailSizeId
     FROM product_details
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
@@ -52,14 +50,13 @@ const getDetailById = async (productId, color, size) => {
     AND product_sizes.size = ${size}
   `;
 
-		console.log(quantity);
-
 		return { productInfo, imageByColor, quantity };
 	} else {
 		const [quantity] = await prisma.$queryRaw`
     SELECT
       details_sizes.quantity,
-      product_sizes.size
+      product_sizes.size,
+			details_sizes.id AS detailSizeId
     FROM product_details
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
@@ -164,6 +161,7 @@ const getProductRanking = async () => {
 				select: {
 					id: true,
 					productId: true,
+					productColorId: true,
 					image: {
 						select: {
 							id: true,
@@ -220,6 +218,60 @@ const deleteHeart = async (userId, productId) => {
 	return 1;
 };
 
+const putCart = async (userId, detailSizeId) => {
+	await prisma.$queryRaw`
+		INSERT INTO
+			carts(user_id, detail_size_id)
+		VALUES
+			(${userId}, ${detailSizeId})
+	`;
+};
+
+const getCartByUserId = async userId => {
+	const list = await prisma.$queryRaw`
+	SELECT
+		carts.user_id AS userId,
+		product_sizes.size AS size, 
+		product_colors.color AS color,
+		product_images.image_url AS imageUrl,
+		products.name AS name,
+		products.price AS price,
+		products.discount_price AS discountPrice
+	FROM
+		carts
+	JOIN
+		details_sizes
+	ON
+		carts.detail_size_id = details_sizes.id
+	JOIN
+		product_sizes
+	ON
+		details_sizes.product_size_id = product_sizes.id
+	JOIN
+		product_details
+	ON
+		details_sizes.product_detail_id = product_details.id
+	JOIN
+		product_colors
+	ON
+		product_details.product_color_id = product_colors.id
+	JOIN
+		product_images
+	ON
+		product_details.id = product_images.product_detail_id
+	JOIN
+		products
+	ON
+		product_details.product_id = products.id
+	WHERE
+		carts.user_id=${userId}
+	AND
+		product_images.is_main=true;
+	`;
+
+	return list;
+};
+
 module.exports = {
 	getProductInfo,
 	getProductRanking,
@@ -229,4 +281,6 @@ module.exports = {
 	getDetailById,
 	getAllImages,
 	getAllQuantityBySize,
+	putCart,
+	getCartByUserId,
 };

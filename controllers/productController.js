@@ -49,7 +49,6 @@ const productRanking = async (req, res) => {
 const clickHeart = async (req, res) => {
 	const userId = req.userId;
 	const productId = req.query.productId;
-	console.log(userId, productId);
 
 	const heart = await productService.clickHeart(userId, productId);
 
@@ -69,6 +68,30 @@ const isHeart = async (req, res) => {
 	}
 };
 
+const cart = async (req, res) => {
+	try {
+		const userId = req.userId;
+		const detailSizeId = req.query.detailSizeId;
+
+		await productService.cart(userId, detailSizeId);
+
+		return res.status(201).json({ message: 'CART_SUCCESS' });
+	} catch (err) {
+		return res.status(400).json({ message: 'VALIDATE_ERROR' });
+	}
+};
+
+const cartList = async (req, res) => {
+	try {
+		const userId = req.userId;
+		const list = await productService.cartList(userId);
+
+		return res.status(200).json({ list });
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 module.exports = {
 	productList,
 	productRanking,
@@ -77,4 +100,6 @@ module.exports = {
 	getAllImages,
 	getAllQuantityBySize,
 	isHeart,
+	cart,
+	cartList,
 };

@@ -2,7 +2,6 @@ const productDao = require('../models/productDao');
 
 const productList = async (category, sortingVariable, sortingCondition) => {
 	const product = await productDao.getProductInfo(category, sortingVariable, sortingCondition);
-
 	return product;
 };
 

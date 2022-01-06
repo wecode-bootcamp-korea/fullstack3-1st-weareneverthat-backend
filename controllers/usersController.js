@@ -22,6 +22,8 @@ const signIn = async (req, res) => {
 	try {
 		const { email, password } = req.body;
 		const REQUIRED_KEYS = { email, password };
+		console.log(email);
+		console.log(password);
 		for (let key in REQUIRED_KEYS) {
 			if (!REQUIRED_KEYS[key]) {
 				return res.status(400).json({ message: 'KEY_ERROR' });

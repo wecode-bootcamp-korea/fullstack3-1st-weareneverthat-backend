@@ -42,7 +42,8 @@ const getDetailById = async (productId, color, size) => {
 		const [quantity] = await prisma.$queryRaw`
     SELECT
       details_sizes.quantity,
-      product_sizes.size
+      product_sizes.size,
+      details_sizes.id 
     FROM product_details
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
@@ -57,7 +58,8 @@ const getDetailById = async (productId, color, size) => {
 		const [quantity] = await prisma.$queryRaw`
     SELECT
       details_sizes.quantity,
-      product_sizes.size
+      product_sizes.size,
+      details_sizes.id
     FROM product_details
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id

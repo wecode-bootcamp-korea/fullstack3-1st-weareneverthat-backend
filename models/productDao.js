@@ -16,12 +16,8 @@ const getDetailById = async (productId, color, size) => {
       products.description,
       products.country,
       product_colors.color,
-<<<<<<< HEAD
       product_colors.id as colorId,
       categories.name as categoryName
-=======
-			product_colors.id AS colorId
->>>>>>> develop
     FROM products
     JOIN product_details ON product_details.product_id = products.id
     JOIN product_colors ON product_colors.id = product_details.product_color_id 
@@ -38,11 +34,7 @@ const getDetailById = async (productId, color, size) => {
     JOIN product_images ON product_images.product_detail_id = product_details.id
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     WHERE product_details.product_id = ${productId}
-<<<<<<< HEAD
     AND product_colors.id = ${color}
-=======
-    AND product_colors.id= ${color}
->>>>>>> develop
   `;
 
 	// 선택한 컬러에 대한 수량이 0이 아닌 사이즈의 수량 // 사이즈 선택시 해당 사이즈의 수량
@@ -51,11 +43,7 @@ const getDetailById = async (productId, color, size) => {
     SELECT
       details_sizes.quantity,
       product_sizes.size,
-<<<<<<< HEAD
-      details_sizes.id 
-=======
 			details_sizes.id AS detailSizeId
->>>>>>> develop
     FROM product_details
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
@@ -71,11 +59,7 @@ const getDetailById = async (productId, color, size) => {
     SELECT
       details_sizes.quantity,
       product_sizes.size,
-<<<<<<< HEAD
-      details_sizes.id
-=======
 			details_sizes.id AS detailSizeId
->>>>>>> develop
     FROM product_details
     JOIN product_colors ON product_colors.id = product_details.product_color_id
     JOIN details_sizes ON details_sizes.product_detail_id = product_details.id
@@ -94,13 +78,8 @@ const getAllImages = async productId => {
 	const AllImages = await prisma.$queryRaw`
     SELECT
       product_colors.color,
-<<<<<<< HEAD
-      product_colors.id as colorId,
-      product_images.image_url
-=======
       product_images.image_url,
 			product_colors.id AS colorId
->>>>>>> develop
     FROM product_details
     JOIN product_images ON product_images.product_detail_id = product_details.id
     JOIN product_colors ON product_colors.id = product_details.product_color_id
@@ -254,13 +233,16 @@ const putCart = async (userId, detailSizeId) => {
 const getCartByUserId = async userId => {
 	const list = await prisma.$queryRaw`
 	SELECT
+		carts.id,
 		carts.user_id AS userId,
 		product_sizes.size AS size, 
 		product_colors.color AS color,
 		product_images.image_url AS imageUrl,
+		products.id AS productId,
 		products.name AS name,
 		products.price AS price,
-		products.discount_price AS discountPrice
+		products.discount_price AS discountPrice,
+		details_sizes.id AS detailOnSizeId
 	FROM
 		carts
 	JOIN
@@ -296,6 +278,43 @@ const getCartByUserId = async userId => {
 	return list;
 };
 
+const deleteCart = async cartId => {
+	await prisma.$queryRaw`
+		DELETE FROM
+			carts
+		WHERE
+			carts.id=${cartId}
+	`;
+
+	return 1;
+};
+
+const updateDetailOnSize = async detailOnSizeId => {
+	await prisma.$queryRaw`
+		UPDATE
+			details_sizes
+		SET
+			quantity = quantity - 1
+		WHERE
+			details_sizes.id = ${detailOnSizeId};
+	`;
+
+	return 1;
+};
+
+const updateSalesCount = async productId => {
+	await prisma.$queryRaw`
+		UPDATE
+			products
+		SET
+			sales_count = sales_count + 1
+		WHERE
+			products.id = ${productId}
+	`;
+
+	return 1;
+};
+
 module.exports = {
 	getProductInfo,
 	getProductRanking,
@@ -307,4 +326,7 @@ module.exports = {
 	getAllQuantityBySize,
 	putCart,
 	getCartByUserId,
+	deleteCart,
+	updateDetailOnSize,
+	updateSalesCount,
 };

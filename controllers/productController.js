@@ -93,6 +93,22 @@ const cartList = async (req, res) => {
 	}
 };
 
+const deleteCart = async (req, res) => {
+	const cartId = req.body.cartId;
+
+	await productService.deleteCart(cartId);
+
+	return res.status(200).json({ messge: 1 });
+};
+
+const checkOut = async (req, res) => {
+	const cartList = req.body.cartList;
+
+	await productService.checkOut(cartList);
+
+	return res.status(200).json({ message: 'SUCCESS' });
+};
+
 module.exports = {
 	productList,
 	productRanking,
@@ -103,4 +119,6 @@ module.exports = {
 	isHeart,
 	cart,
 	cartList,
+	deleteCart,
+	checkOut,
 };

@@ -15,6 +15,7 @@ const getDetail = async (productId, color, size) => {
 	productInfo['image_url'] = imageUrl;
 	productInfo['quantity'] = quantity['quantity'];
 	productInfo['size'] = quantity['size'];
+	productInfo['detailSizeId'] = quantity['detailSizeId'];
 
 	return productInfo;
 };
@@ -48,6 +49,16 @@ const isHeart = async (userId, productId) => {
 	return isHeart;
 };
 
+const cart = async (userId, detailSizeId) => {
+	await productDao.putCart(userId, detailSizeId);
+};
+
+const cartList = async userId => {
+	const list = await productDao.getCartByUserId(userId);
+
+	return list;
+};
+
 module.exports = {
 	productRanking,
 	clickHeart,
@@ -56,4 +67,6 @@ module.exports = {
 	getAllQuantityBySize,
 	productList,
 	isHeart,
+	cart,
+	cartList,
 };

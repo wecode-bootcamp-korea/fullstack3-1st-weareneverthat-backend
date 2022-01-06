@@ -36,4 +36,8 @@ const signIn = async (req, res) => {
 	}
 };
 
-module.exports = { signUp, signIn };
+const login = async (req, res) => {
+	return res.status(200).json({ id: req.userId });
+};
+
+module.exports = { signUp, signIn, login };

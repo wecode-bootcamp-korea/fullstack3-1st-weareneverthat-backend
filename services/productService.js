@@ -60,6 +60,22 @@ const cartList = async userId => {
 	return list;
 };
 
+const deleteCart = async cartId => {
+	await productDao.deleteCart(cartId);
+
+	return 1;
+};
+
+const checkOut = async cartList => {
+	for (index in cartList) {
+		await productDao.deleteCart(cartList[index].id);
+		await productDao.updateDetailOnSize(cartList[index].detailOnSizeId);
+		await productDao.updateSalesCount(cartList[index].productId);
+	}
+
+	return 1;
+};
+
 module.exports = {
 	productRanking,
 	clickHeart,
@@ -70,4 +86,6 @@ module.exports = {
 	isHeart,
 	cart,
 	cartList,
+	deleteCart,
+	checkOut,
 };

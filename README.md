@@ -6,13 +6,13 @@
 
 ## Members
 
-<img src="https://user-images.githubusercontent.com/90169703/148523187-60bd1fac-668c-46fb-8c52-f067c6db0338.png" width="30px" height="30px"/> 강민수 &nbsp; [Email](minsu910725@gmail.com) &nbsp; [기술블로그](https://velog.io/@minsu8834)
+<img src="https://user-images.githubusercontent.com/90169703/148523187-60bd1fac-668c-46fb-8c52-f067c6db0338.png" width="30px" height="30px"/> 강민수 &nbsp; [기술블로그](https://velog.io/@minsu8834)
 
-<img src="https://user-images.githubusercontent.com/90169703/148521624-e9bf350b-7e2c-43a0-be07-f624426b68fd.png" width="30px" height="30px"/> 구민기 &nbsp; [Email](rnalsrl93@gmail.com) &nbsp; [기술블로그](https://velog.io/@goomg93)
+<img src="https://user-images.githubusercontent.com/90169703/148521624-e9bf350b-7e2c-43a0-be07-f624426b68fd.png" width="30px" height="30px"/> 구민기 &nbsp; [기술블로그](https://velog.io/@goomg93)
 
-<img src="https://user-images.githubusercontent.com/90169703/148523297-0ffe083d-0e89-434c-afce-a3a3d7a33782.png" width="30px" height="30px"/> 민하늘 &nbsp; [Email](onlynforever@gmail.com) &nbsp; [기술블로그](https://velog.io/@threeplef)
+<img src="https://user-images.githubusercontent.com/90169703/148523297-0ffe083d-0e89-434c-afce-a3a3d7a33782.png" width="30px" height="30px"/> 민하늘 &nbsp; [기술블로그](https://velog.io/@threeplef)
 
-<img src="https://user-images.githubusercontent.com/90169703/148523411-dc9e0188-5263-4959-854f-d330e5c36db1.png" width="30px" height="30px"/> 정태영 &nbsp; [Email](dev.taeyeong@gmail.com) &nbsp; [기술블로그](https://dev-taeyeong.github.io)
+<img src="https://user-images.githubusercontent.com/90169703/148523411-dc9e0188-5263-4959-854f-d330e5c36db1.png" width="30px" height="30px"/> 정태영 &nbsp; [기술블로그](https://dev-taeyeong.github.io)
 
 <br>
 
@@ -132,3 +132,10 @@
    - 상품 각각의 총 좋아요 개수 조회
    - 로그인 한 유저가 해당 상품에 좋아요를 눌렀는지 조회
    - 유저가 좋아요를 눌렀을 때 테이블에 해당 유저의 id와 상품의 id가 있는지 조회 -> 있으면 데이터 삭제, 없으면 데이터 추가
+
+
+### Contact US
+- 강민수 minsu910725@gmail.com
+- 구민기 rnalsrl93@gmail.com
+- 민하늘 onlynforever@gmail.com
+- 정태영 dev.taeyeong@gmail.com

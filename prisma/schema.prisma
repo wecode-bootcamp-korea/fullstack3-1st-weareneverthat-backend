@@ -10,100 +10,117 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
-  id             Int                      @id @default(autoincrement())
-  color          String
-  ProductGroup   ProductGroup             @relation(fields: [productGroupId], references: [id])
-  productGroupId Int
-  img            ProductImage[]
-  cart           Cart[]
-  product        ProductsOnProductSizes[]
-
-  @@map("products")
-}
-
-model ProductGroup {
-  id            Int       @id @default(autoincrement())
-  name          Int
-  price         Int
-  discountPrice Decimal?  @map("discount_price")
-  description   String
-  country       String
-  createdAt     DateTime  @default(now()) @map("created_at")
-  Category      Category  @relation(fields: [categoryId], references: [id])
-  categoryId    Int
-  product       Product[]
-  heart         Heart[]
-
-  @@map("product_groups")
-}
-
-model ProductImage {
-  id        Int     @id @default(autoincrement())
-  imageUrl  String  @map("image_url")
-  isList    Boolean @default(false) @map("is_list")
-  Product   Product @relation(fields: [productId], references: [id])
-  productId Int
-
-  @@map("product_images")
-}
-
-model ProductSize {
-  id    Int                      @id @default(autoincrement())
-  size  String
-  sizes ProductsOnProductSizes[]
-
-  @@map("product_sizes")
-}
-
-model ProductsOnProductSizes {
-  id            Int         @id @default(autoincrement())
-  count         Int
-  Product       Product     @relation(fields: [productId], references: [id])
-  productId     Int
-  ProductSize   ProductSize @relation(fields: [productSizeId], references: [id])
-  productSizeId Int
-
-  @@map("products_product_sizes")
-}
-
 model Category {
-  id           Int            @id @default(autoincrement())
-  name         String
-  productGroup ProductGroup[]
+  id   Int    @id @default(autoincrement())
+  name String
+
+  product Product[]
 
   @@map("categories")
 }
 
+model Product {
+  id            Int      @id @default(autoincrement())
+  name          String
+  price         Int
+  discountPrice Int      @map("discount_price")
+  description   String
+  country       String
+  createdAt     DateTime @default(now()) @map("created_at")
+  salesCount    Int      @map("sales_count")
+  Category      Category @relation(fields: [categoryId], references: [id])
+  categoryId    Int      @map("category_id")
+
+  heart  Heart[]
+  detail ProductDetail[]
+
+  @@map("products")
+}
+
+model ProductDetail {
+  id             Int          @id @default(autoincrement())
+  Product        Product      @relation(fields: [productId], references: [id])
+  productId      Int          @map("product_id")
+  ProductColor   ProductColor @relation(fields: [productColorId], references: [id])
+  productColorId Int          @map("product_color_id")
+
+  image ProductImage[]
+  size  DetailOnSize[]
+
+  @@map("product_details")
+}
+
+model ProductImage {
+  id              Int           @id @default(autoincrement())
+  imageUrl        String        @map("image_url")
+  isMain          Boolean       @default(false) @map("is_main")
+  ProductDetail   ProductDetail @relation(fields: [productDetailId], references: [id])
+  productDetailId Int           @map("product_detail_id")
+
+  @@map("product_images")
+}
+
+model ProductColor {
+  id    Int    @id @default(autoincrement())
+  color String
+
+  productDetail ProductDetail[]
+
+  @@map("product_colors")
+}
+
+model ProductSize {
+  id   Int    @id @default(autoincrement())
+  size String
+
+  detail DetailOnSize[]
+
+  @@map("product_sizes")
+}
+
+model DetailOnSize {
+  id              Int           @id @default(autoincrement())
+  quantity        Int
+  ProductDetail   ProductDetail @relation(fields: [productDetailId], references: [id])
+  productDetailId Int           @map("product_detail_id")
+  ProductSize     ProductSize   @relation(fields: [productSizeId], references: [id])
+  productSizeId   Int           @map("product_size_id")
+
+  cart Cart[]
+
+  @@map("details_sizes")
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
   name      String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt String?  @map("updated_at")
-  cart      Cart[]
-  heart     Heart[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+
+  cart  Cart[]
+  heart Heart[]
 
   @@map("users")
 }
 
 model Cart {
-  id        Int     @id @default(autoincrement())
-  Product   Product @relation(fields: [productId], references: [id])
-  productId Int
-  User      User    @relation(fields: [userId], references: [id])
-  userId    Int
+  id             Int          @id @default(autoincrement())
+  DetailOnSize   DetailOnSize @relation(fields: [detailOnSizeId], references: [id])
+  detailOnSizeId Int          @map("detail_size_id")
+  User           User         @relation(fields: [userId], references: [id])
+  userId         Int          @map("user_id")
 
-  @@map("cart")
+  @@map("carts")
 }
 
 model Heart {
-  id             Int          @id @default(autoincrement())
-  ProductGroup   ProductGroup @relation(fields: [productGroupId], references: [id])
-  productGroupId Int
-  User           User         @relation(fields: [userId], references: [id])
-  userId         Int
+  id        Int     @id @default(autoincrement())
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int     @map("product_id")
+  User      User    @relation(fields: [userId], references: [id])
+  userId    Int     @map("user_id")
 
   @@map("hearts")
 }

@@ -2,12 +2,17 @@ const jwt = require('jsonwebtoken');
 const productService = require('../services/productService');
 
 const getDetail = async (req, res) => {
-	const productId = req.params.productId;
-	const { color, size } = req.query;
+	try {
+		const productId = req.params.productId;
+		const { color, size } = req.query;
 
-	const info = await productService.getDetail(productId, color, size);
+		const info = await productService.getDetail(productId, color, size);
 
-	return res.status(200).json(info);
+		return res.status(200).json(info);
+	} catch (err) {
+		console.log(error);
+		return res.status(400).json({ message: 'ERROR' });
+	}
 };
 
 const getAllImages = async (req, res) => {

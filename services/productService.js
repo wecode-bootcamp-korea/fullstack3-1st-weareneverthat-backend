@@ -9,6 +9,13 @@ const getDetail = async (productId, color, size) => {
 	const detail = await productDao.getDetailById(productId, color, size);
 
 	const { productInfo, imageByColor, quantity } = detail;
+<<<<<<< HEAD
+<<<<<<< HEAD
+	console.log(quantity);
+=======
+>>>>>>> main
+=======
+>>>>>>> develop
 
 	const imageUrl = imageByColor.map(el => el.image_url);
 

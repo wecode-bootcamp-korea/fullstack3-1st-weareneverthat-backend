@@ -274,6 +274,13 @@ const getCartByUserId = async userId => {
 	AND
 		product_images.is_main=true;
 	`;
+<<<<<<< HEAD
+<<<<<<< HEAD
+	console.log(list);
+=======
+>>>>>>> main
+=======
+>>>>>>> develop
 
 	return list;
 };

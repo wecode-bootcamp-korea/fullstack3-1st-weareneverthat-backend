@@ -19,7 +19,6 @@ const signUp = async (email, password, name) => {
 
 const signIn = async (email, password) => {
 	const [user] = await usersDao.getUserByEmail(email);
-
 	if (!user) {
 		const error = new Error('유효하지 않은 정보입니다.');
 		error.statusCode = 409;

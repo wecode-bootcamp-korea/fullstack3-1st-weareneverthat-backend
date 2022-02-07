@@ -2,23 +2,23 @@
 
 <img width="789" alt="스크린샷 2022-01-07 오후 1 16 57" src="https://user-images.githubusercontent.com/90169703/148521986-5e50c8a5-a59d-444f-adce-863c7257613b.png">
 
-[weareneverthat 사이트 방문하기]()
+[weareneverthat 구현 영상 ]()
 
 ## Members
 
-<img src="https://user-images.githubusercontent.com/90169703/148523187-60bd1fac-668c-46fb-8c52-f067c6db0338.png" width="30px" height="30px"/> 강민수 &nbsp; [기술블로그](https://velog.io/@minsu8834)
+<img src="https://user-images.githubusercontent.com/90169703/148523187-60bd1fac-668c-46fb-8c52-f067c6db0338.png" width="30px" height="30px"/> 강민수 &nbsp; [기술블로그](https://velog.io/@minsu8834), [깃허브 주소](https://github.com/minchodang)
 
-<img src="https://user-images.githubusercontent.com/90169703/148521624-e9bf350b-7e2c-43a0-be07-f624426b68fd.png" width="30px" height="30px"/> 구민기 &nbsp; [기술블로그](https://velog.io/@goomg93)
+<img src="https://user-images.githubusercontent.com/90169703/148521624-e9bf350b-7e2c-43a0-be07-f624426b68fd.png" width="30px" height="30px"/> 구민기 &nbsp; [기술블로그](https://velog.io/@goomg93), [깃허브 주소](https://github.com/goomg93)
 
-<img src="https://user-images.githubusercontent.com/90169703/148523297-0ffe083d-0e89-434c-afce-a3a3d7a33782.png" width="30px" height="30px"/> 민하늘 &nbsp; [기술블로그](https://velog.io/@threeplef)
+<img src="https://user-images.githubusercontent.com/90169703/148523297-0ffe083d-0e89-434c-afce-a3a3d7a33782.png" width="30px" height="30px"/> 민하늘 &nbsp; [기술블로그](https://velog.io/@threeplef), [깃허브 주소](https://github.com/threeplef)
 
-<img src="https://user-images.githubusercontent.com/90169703/148523411-dc9e0188-5263-4959-854f-d330e5c36db1.png" width="30px" height="30px"/> 정태영 &nbsp; [기술블로그](https://dev-taeyeong.github.io)
+<img src="https://user-images.githubusercontent.com/90169703/148523411-dc9e0188-5263-4959-854f-d330e5c36db1.png" width="30px" height="30px"/> 정태영 &nbsp; [기술블로그](https://dev-taeyeong.github.io), [깃허브 주소](https://github.com/dev-taeyeong)
 
 <br>
 
 ## Introduction
 
-대표적인 쇼핑몰 사이트인 디스이즈네버댓 사이트의 주요기능들을 학습 목적으로 클론 코딩한 프로젝트 개발.
+대표적인 쇼핑몰 사이트인 디스이즈네버댓 사이트를 모티브 삼아 위얼네버댓 이커머스 쇼핑몰 개발.
 
 - 기간 : 21.12.27~ 22.01.14
 - 구성 : Front-end 2명, Back-end 2명

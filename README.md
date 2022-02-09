@@ -2,7 +2,7 @@
 
 <img width="789" alt="스크린샷 2022-01-07 오후 1 16 57" src="https://user-images.githubusercontent.com/90169703/148521986-5e50c8a5-a59d-444f-adce-863c7257613b.png">
 
-[weareneverthat 구현 영상 ]()
+[weareneverthat 구현 영상 ](https://youtu.be/fBO8YbO596U)
 
 ## Members
 
@@ -23,24 +23,21 @@
 - 기간 : 21.12.27~ 22.01.14
 - 구성 : Front-end 2명, Back-end 2명
 
-### 레포지토리 주소
+## 레포지토리 주소
 
 - [Front-end Github](https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-frontend)
 - [Back-end Github](https://github.com/wecode-bootcamp-korea/fullstack3-1st-weareneverthat-backend)
 
+## 팀 Notion
 
-### Notion 프로젝트 소개
+[바로가기](https://www.notion.so/wecode/weareneverthat-250f88ce3f224075ac6fac6b71348dc3)
 
-### 프로젝트 사이트 기능 구현 영상
-
-[weareneverthat 구현 영상]()
-
-### DB modeling
+## DB modeling
 
 - weareneverthat db 자료 구조
   ![image](https://user-images.githubusercontent.com/87692499/148669964-0b122018-4261-4944-9015-8f63ac483735.png)
 
-### Technologies
+## Technologies
 
 - 공통
 
@@ -54,8 +51,7 @@
 
 <img src="https://img.shields.io/badge/prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"> <img src="https://img.shields.io/badge/postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"> <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
 
-
-### 담당자 별 구현 기능.
+## 담당자 별 구현 기능.
 
 [ Front-end ]
 
@@ -64,13 +60,13 @@
 1. 상품 리스트 페이지 전반적인 ui 구성 및 기능 추가
    - 상품 리스트 메인 이미지 호버 기능 구현
    - 상품 리스트 서브 이미지 온클릭시 메인 이미지 전환 기능 구현
-   - 상품 리스트 소팅 버튼 Ui. 
+   - 상품 리스트 소팅 버튼 Ui.
    - 상품 리스트 가격순에 따른 정렬 기능 구현
    - 상품 카테고리 버튼 ui
    - 상품 카테고리 별 상품 리스트 소팅 기능 구현
    - 상품별 좋아요 ui 추가.
    - 반응형 디자인
-   
+
 - 민하늘
 
 1. 제품 상세 페이지 UI 구현
@@ -107,18 +103,16 @@
    - 마우스 호버시 상품 이미지가 보이는 기능 구현
    - 반응형 디자인
 
-
 [ Back-end ]
 
 - 강민수
 
 1. 회원가입, 로그인 api 구축
-   - 회원가입 시 유효성 검증 로직 구현. 
+   - 회원가입 시 유효성 검증 로직 구현.
    - 기존 회원 가입자 정보 존재 여부, 가입시 필수키 입력 여부 구현, 가입시 비밀번호 해쉬 암호화 구현
-   - 로그인 시 유효성 검증 로직 구현. 
+   - 로그인 시 유효성 검증 로직 구현.
    - 기존 회원 정보 이메일, 비밀번호 일치여부 조회, 가입시 토큰 부여 구현
 2. 리스트 페이지 상품 데이터 수집 후 가공.
-
 
 - 구민기
 
@@ -148,8 +142,8 @@
    - 로그인 한 유저가 해당 상품에 좋아요를 눌렀는지 조회
    - 유저가 좋아요를 눌렀을 때 테이블에 해당 유저의 id와 상품의 id가 있는지 조회 -> 있으면 데이터 삭제, 없으면 데이터 추가
 
+## Contact US
 
-### Contact US
 - 강민수 minsu910725@gmail.com
 - 구민기 rnalsrl93@gmail.com
 - 민하늘 onlynforever@gmail.com
